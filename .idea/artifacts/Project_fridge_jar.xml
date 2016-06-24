@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Project-fridge:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Project_fridge_jar</output-path>
+    <root id="archive" name="Project-fridge.jar">
+      <element id="module-output" name="Project-fridge" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-5.1.39-bin.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
