@@ -11,26 +11,6 @@ import static java.lang.System.exit;
  */
 public class Lodowka {
 
-    public final static void clearConsole()
-    {
-        try
-        {
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows"))
-            {
-                Runtime.getRuntime().exec("cls");
-            }
-            else
-            {
-                Runtime.getRuntime().exec("clear");
-            }
-        }
-        catch (final Exception e)
-        {
-            //  Handle any exceptions.
-        }
-    }
 
 
     public static void dodaj_element(){
@@ -63,25 +43,108 @@ public class Lodowka {
                 e.printStackTrace();
             }
             System.out.println("Dodano " + nazwa);
-            clearConsole();
+
         }
 
 
 
     }
+
     public static void sprawdz_zawartosc()
     {
         System.out.println("W lodówce znajdują się: ");
+
         try{
             // Class.forName("org.gjt.mm.mysql.Driver");
             Class.forName("com.mysql.jdbc.Driver");
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
             Statement myStmt = myConn.createStatement();
             ResultSet myRs = myStmt.executeQuery("select * from przedmioty");
+            int i=1;
             while(myRs.next()){
-                System.out.println(myRs.getString("nazwa") + ", " + myRs.getString("rodzaj"));
+                System.out.println(i +". " + myRs.getString("nazwa"));
+                i+=1;
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            Thread.sleep(2000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        for (int i = 0; i < 50; ++i) System.out.println();
+    }
+    public static void wyciagnij_element(){
+
+        sprawdz_zawartosc();
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj nazwe przedmiotu który chcesz wyciągnąć: ");
+        String nazwa = skan.nextLine();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
+            String sql = "delete from przedmioty where nazwa=?";
+            PreparedStatement myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1,nazwa);
+            myStmt.executeUpdate();
+            System.out.println("Usunięto " + nazwa);
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void edytuj(){
+
+        System.out.println("W lodówce znajdują się: ");
+
+        try{
+            // Class.forName("org.gjt.mm.mysql.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
+            Statement myStmt = myConn.createStatement();
+            ResultSet myRs = myStmt.executeQuery("select * from przedmioty");
+
+            while(myRs.next()){
+                System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Scanner skan = new Scanner(System.in);
+        Scanner skan2 = new Scanner(System.in);
+        Scanner skan3 = new Scanner(System.in);
+        System.out.println("Podaj id przedmiotu który chcesz edytować: ");
+        int numer = skan.nextInt();
+        System.out.println("Napisz jak chcesz edytować nazwę: ");
+        String nazwa = skan2.nextLine();
+        System.out.println("Napisz jak chcesz edytować rodzaj? ");
+        String rodzaj = skan3.nextLine();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
+            String sql = "update przedmioty set nazwa=?, rodzaj= ? where id=?";
+            PreparedStatement myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1,nazwa);
+            myStmt.setString(2,rodzaj);
+            myStmt.setInt(3,numer);
+
+            myStmt.executeUpdate();
+            System.out.println("Pomyślnie edytowano element o id = " + numer);
+
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -106,13 +169,14 @@ public class Lodowka {
                     dodaj_element();
                     break;
                 case 2:
-
+                    wyciagnij_element();
                     break;
                 case 3:
                     sprawdz_zawartosc();
                     break;
                 case 4:
-                    exit(0);
+                    edytuj();
+                    break;
                 case 5:
                     exit(0);
 
