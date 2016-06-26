@@ -2,24 +2,24 @@ package com.app;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Scanner;
 
 /**
  * Created by Bartek on 2016-06-26.
  */
-public class Nabial extends Przedmiot {
+public class Ciasta extends Przedmiot {
     private String nazwa;
-    private final String rodzaj = "nabiał";
+    private final String rodzaj = "ciasta";
     private Date data_waznosci;
     private double waga;
-    private double procent_tluszczu;
 
-    public void Nabial(String nazwaa,Date data,double wagaa,double tluszcz)
+    public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
     {
         nazwa=nazwaa;
         data_waznosci = data;
         waga = wagaa;
-        procent_tluszczu = tluszcz;
+
     }
     public void setNazwa(String nazwaa)
     {
@@ -30,10 +30,7 @@ public class Nabial extends Przedmiot {
     {
         waga = wagaa;
     }
-    public void setdodatkowa(double x)
-    {
-        procent_tluszczu =x;
-    }
+
 
     public void wyswietl(){
 
@@ -50,9 +47,7 @@ public class Nabial extends Przedmiot {
     public double getWaga(){
         return waga;
     }
-    public double getdodatkowa(){
-        return procent_tluszczu;
-    }
+
 
     public void dodaj_date(){
         Scanner skan = new Scanner(System.in);
@@ -67,5 +62,4 @@ public class Nabial extends Przedmiot {
         }
 
     }
-
 }
