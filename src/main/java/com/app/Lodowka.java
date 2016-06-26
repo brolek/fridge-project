@@ -12,39 +12,92 @@ import static java.lang.System.exit;
 public class Lodowka {
 
 
-
-    public static void dodaj_element(){
-        System.out.println("Ile elementów chcesz dodać?");
+    public static Przedmiot dodaj_dane(Przedmiot obiekt)
+    {
         Scanner skan = new Scanner(System.in);
         Scanner skan2 = new Scanner(System.in);
         Scanner skan3 = new Scanner(System.in);
-        int ilosc = skan.nextInt();
-        for(int i =0 ;i <ilosc ; i++){
-            System.out.println("Podaj nazwe elementu (np. banan lub dżem");
-            String nazwa = skan2.nextLine();
-            System.out.println("Podaj rodzaj elementu (np. nabiał, mięso, warzywa");
-            String rodzaj = skan3.nextLine();
+        System.out.println("Podaj nazwe elementu (np. banan lub dżem)");
+        String nazwa = skan.nextLine();
+        obiekt.setNazwa(nazwa);
+        obiekt.dodaj_date();
+        System.out.println("Podaj wagę przedmiotu (w kilogramach): ");
+        double waga = skan.nextDouble();
+        obiekt.setWaga(waga);
+        System.out.println("Podaj procent tłuszczu przedmiotu: ");
+        double tluszcz = skan.nextDouble();
+        obiekt.setdodatkowa(tluszcz);
+        return obiekt;
+
+
+    }
+    public static void do_bazy(Przedmiot obiekt){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
+            String sql = "insert into przedmioty (nazwa, rodzaj) values ( ?, ? )";
+            PreparedStatement myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1,obiekt.getNazwa());
+            myStmt.setString(2,obiekt.getRodzaj());
+            myStmt.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Dodano " + obiekt.getNazwa());
+    }
+    public static void dodaj_element(){
+        Scanner skan = new Scanner(System.in);
+
+        Scanner skan2 = new Scanner(System.in);
+        Scanner skan3 = new Scanner(System.in);
+        System.out.println("Podaj numer kategorii którą chcesz dodać: ");
+        System.out.println("1. Nabiał");
+        System.out.println("2. Mięso");
+        System.out.println("3. Ryby");
+        System.out.println("4. Warzywa");
+        System.out.println("5. Ciasta");
+        int kategoria = skan2.nextInt();
+
+        switch (kategoria)
+        {
+            case 1:
+                Przedmiot obiekt = new Nabial();
+                dodaj_dane(obiekt);
+                do_bazy(obiekt);
+                break;
+
+        }
+
+
+
+          //  String nazwa = skan2.nextLine();
+           // System.out.println("Podaj rodzaj elementu (np. nabiał, mięso, warzywa");
+           // String rodzaj = skan3.nextLine();
            // System.out.println("Podaj datę upłynięcia terminu ważności (rrrr-mm-dd");
             //String data = skan.nextLine();
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
-                String sql = "insert into przedmioty (nazwa, rodzaj) values ( ?, ? )";
-                PreparedStatement myStmt = myConn.prepareStatement(sql);
-                myStmt.setString(1,nazwa);
-                myStmt.setString(2,rodzaj);
-                myStmt.executeUpdate();
-
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Dodano " + nazwa);
+        /*try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
+            String sql = "insert into przedmioty (nazwa, rodzaj) values ( ?, ? )";
+            PreparedStatement myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1,nazwa);
+            myStmt.setString(2,rodzaj);
+            myStmt.executeUpdate();
 
         }
+        catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Dodano " + nazwa);
+*/
+
 
 
 
