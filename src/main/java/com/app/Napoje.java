@@ -13,6 +13,7 @@ public class Napoje extends Przedmiot {
     private final String rodzaj = "napoje";
     private Date data_waznosci;
     private double waga;
+    private double zawartosc_alkoholu;
 
     public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
     {
@@ -30,6 +31,18 @@ public class Napoje extends Przedmiot {
     {
         waga = wagaa;
     }
+    public void setUnique()
+    {
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj zawartosc procentową alkoholu (jeśli nie zawiera alkoholu to wpisz 0): ");
+        double procent = skan.nextDouble();
+        zawartosc_alkoholu =procent;
+    }
+    public double getUnique(){
+        return zawartosc_alkoholu;
+    }
+    public String getUnique2(){return "";}
+
 
 
     public void wyswietl(){

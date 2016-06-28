@@ -13,6 +13,7 @@ public class Ryby extends Przedmiot{
     private final String rodzaj = "ryby";
     private Date data_waznosci;
     private double waga;
+    private String zbiornik;
 
     public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
     {
@@ -30,7 +31,17 @@ public class Ryby extends Przedmiot{
     {
         waga = wagaa;
     }
-
+    public void setUnique()
+    {
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj zbiornik wodny z którego pochodzi ta ryba: ");
+        String zbiornikk = skan.nextLine();
+        zbiornik=zbiornikk;
+    }
+    public String getUnique2(){
+        return zbiornik;
+    }
+    public double getUnique(){return 0;}
 
     public void wyswietl(){
 

@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Nabial extends Przedmiot {
     private String nazwa;
-    private final String rodzaj = "nabiał";
+    private final String rodzaj = "nabial";
     private Date data_waznosci;
     private double waga;
     private double procent_tluszczu;
@@ -30,11 +30,17 @@ public class Nabial extends Przedmiot {
     {
         waga = wagaa;
     }
-    public void setdodatkowa(double x)
+    public void setUnique()
     {
-        procent_tluszczu =x;
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj zawartosc procentową tłuszczu: ");
+        double procent = skan.nextDouble();
+        procent_tluszczu =procent;
     }
-
+    public double getUnique(){
+        return procent_tluszczu;
+    }
+    public String getUnique2(){return "";}
     public void wyswietl(){
 
     }
@@ -50,9 +56,7 @@ public class Nabial extends Przedmiot {
     public double getWaga(){
         return waga;
     }
-    public double getdodatkowa(){
-        return procent_tluszczu;
-    }
+
 
     public void dodaj_date(){
         Scanner skan = new Scanner(System.in);

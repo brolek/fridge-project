@@ -13,6 +13,7 @@ public class Ciasta extends Przedmiot {
     private final String rodzaj = "ciasta";
     private Date data_waznosci;
     private double waga;
+    private String firma;
 
     public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
     {
@@ -30,6 +31,17 @@ public class Ciasta extends Przedmiot {
     {
         waga = wagaa;
     }
+    public void setUnique()
+    {
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj nazwę firmy z której pochodzi ciasto: ");
+        String firmaa = skan.nextLine();
+        firma = firmaa;
+    }
+    public String getUnique2(){
+        return firma;
+    }
+    public double getUnique(){return 0;}
 
 
     public void wyswietl(){

@@ -10,9 +10,10 @@ import java.util.Scanner;
  */
 public class Mieso extends Przedmiot{
     private String nazwa;
-    private final String rodzaj = "mięso";
+    private final String rodzaj = "mieso";
     private Date data_waznosci;
     private double waga;
+    private String kraj;
 
     public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
     {
@@ -30,6 +31,17 @@ public class Mieso extends Przedmiot{
     {
         waga = wagaa;
     }
+    public void setUnique()
+    {
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj kraj pochodzenia: ");
+        String krajj = skan.nextLine();
+        kraj=krajj;
+    }
+    public String getUnique2(){
+        return kraj;
+    }
+    public double getUnique(){return 0;}
 
 
     public void wyswietl(){

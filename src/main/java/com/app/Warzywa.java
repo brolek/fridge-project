@@ -13,6 +13,7 @@ public class Warzywa extends Przedmiot{
     private final String rodzaj = "warzywa";
     private Date data_waznosci;
     private double waga;
+    private String kraj_pochodzenia;
 
     public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
     {
@@ -30,8 +31,17 @@ public class Warzywa extends Przedmiot{
     {
         waga = wagaa;
     }
-
-
+    public void setUnique()
+    {
+        Scanner skan = new Scanner(System.in);
+        System.out.println("Podaj kraj z którego pochodzi " + nazwa +": ");
+        String kraj = skan.nextLine();
+        kraj_pochodzenia = kraj;
+    }
+    public String getUnique2(){
+        return kraj_pochodzenia;
+    }
+    public double getUnique(){return 0;}
     public void wyswietl(){
 
     }
