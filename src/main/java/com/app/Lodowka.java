@@ -16,12 +16,13 @@ import static java.lang.System.inheritedChannel;
 public class Lodowka {
 
 
-    public static void wyswietl_nabial(){
+    public static void wyswietl_baze(String rodzaj){
         try{
+
             Class.forName("com.mysql.jdbc.Driver");
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
             Statement myStmt = myConn.createStatement();
-            ResultSet myRs = myStmt.executeQuery("select * from nabial");
+            ResultSet myRs = myStmt.executeQuery("select * from "+rodzaj);
 
             while(myRs.next()){
                 System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
@@ -33,91 +34,7 @@ public class Lodowka {
             e.printStackTrace();
         }
     }
-    public static void wyswietl_ciasta(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
-            Statement myStmt = myConn.createStatement();
-            ResultSet myRs = myStmt.executeQuery("select * from ciasta");
-
-            while(myRs.next()){
-                System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void wyswietl_mieso(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
-            Statement myStmt = myConn.createStatement();
-            ResultSet myRs = myStmt.executeQuery("select * from mieso");
-
-            while(myRs.next()){
-                System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void wyswietl_napoje(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
-            Statement myStmt = myConn.createStatement();
-            ResultSet myRs = myStmt.executeQuery("select * from napoje");
-
-            while(myRs.next()){
-                System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void wyswietl_ryby(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
-            Statement myStmt = myConn.createStatement();
-            ResultSet myRs = myStmt.executeQuery("select * from ryby");
-
-            while(myRs.next()){
-                System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void wyswietl_warzywa(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false","root","root");
-            Statement myStmt = myConn.createStatement();
-            ResultSet myRs = myStmt.executeQuery("select * from warzywa");
-
-            while(myRs.next()){
-                System.out.println(myRs.getInt("id") +". " + myRs.getString("nazwa"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    
     public static void dokladne_dane(){
 
         Scanner skan = new Scanner(System.in);
@@ -136,7 +53,7 @@ public class Lodowka {
             Class.forName("com.mysql.jdbc.Driver");
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
             if(numer==1) {
-                wyswietl_nabial();
+                wyswietl_baze("nabial");
                 System.out.println("Podaj id elementu który chcesz dokładnie obejrzeć: ");
                 id = skan.nextInt();
                 sql = "select * from nabial where id=?";
@@ -149,7 +66,7 @@ public class Lodowka {
                 }
             }
             if(numer==2) {
-                wyswietl_mieso();
+                wyswietl_baze("mieso");
                 System.out.println("Podaj id elementu który chcesz dokładnie obejrzeć: ");
                 id = skan.nextInt();
                 sql = "select * from mieso where id=?";
@@ -162,7 +79,7 @@ public class Lodowka {
                 }
             }
             if(numer==3) {
-                wyswietl_ryby();
+                wyswietl_baze("ryby");
                 System.out.println("Podaj id elementu który chcesz dokladnie obejrzec: ");
                 id = skan.nextInt();
                 sql = "select * from ryby where id=?";
@@ -175,7 +92,7 @@ public class Lodowka {
                 }
             }
             if(numer==4) {
-                wyswietl_warzywa();
+                wyswietl_baze("warzywa");
                 System.out.println("Podaj id elementu który chcesz dokładnie obejrzeć: ");
                 id = skan.nextInt();
                 sql = "select * from warzywa where id=?";
@@ -188,7 +105,7 @@ public class Lodowka {
                 }
             }
             if(numer==5) {
-                wyswietl_ciasta();
+                wyswietl_baze("ciasta");
                 System.out.println("Podaj id elementu który chcesz dokładnie obejrzeć: ");
                 id = skan.nextInt();
                 sql = "select * from ciasta where id=?";
@@ -201,7 +118,7 @@ public class Lodowka {
                 }
             }
             if(numer==6) {
-                wyswietl_napoje();
+                wyswietl_baze("napoje");
                 System.out.println("Podaj id elementu który chcesz dokładnie obejrzeć: ");
                 id = skan.nextInt();
                 sql = "select * from napoje where id=?";
@@ -232,7 +149,10 @@ public class Lodowka {
         System.out.println("Podaj nazwe elementu (np. banan lub dżem)");
         String nazwa = skan.nextLine();
         obiekt.setNazwa(nazwa);
-        obiekt.dodaj_date();
+        System.out.println("Podaj date ważności (np. banan lub dżem)");
+        String data = skan.nextLine();
+
+        obiekt.dodaj_date(data);
         System.out.println("Podaj wagę przedmiotu (w kilogramach): ");
         double waga = skan.nextDouble();
         obiekt.setWaga(waga);
@@ -241,7 +161,8 @@ public class Lodowka {
 
 
     }
-    public static void do_bazy(Przedmiot obiekt){
+    public static int do_bazy(Przedmiot obiekt){
+        int powodzenie =0;
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -281,14 +202,19 @@ public class Lodowka {
             else
                 myStmt.setString(5,obiekt.getUnique2());
             myStmt.executeUpdate();
+            powodzenie=1;
+            return powodzenie;
 
         }
         catch (SQLException e) {
             e.printStackTrace();
+
+            return powodzenie;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return powodzenie;
         }
-        System.out.println("Dodano " + obiekt.getNazwa());
+        //System.out.println("Dodano " + obiekt.getNazwa());
     }
     public static void dodaj_element(){
         Scanner skan = new Scanner(System.in);
@@ -341,10 +267,10 @@ public class Lodowka {
 
     }
 
-    public static void sprawdz_zawartosc()
+    public static int sprawdz_zawartosc()
     {
         System.out.println("W lodówce znajdują się: ");
-
+        int sprawdz=0;
         try{
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -392,20 +318,25 @@ public class Lodowka {
                 System.out.println(i +". " + myRs.getString("nazwa"));
                 i+=1;
             }
+            sprawdz =1;
+            return sprawdz;
         } catch (SQLException e) {
             e.printStackTrace();
+            return sprawdz;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+
         }
         try {
             Thread.sleep(2000);                 //1000 milliseconds is one second.
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
+            return sprawdz;
         }
-
+        return sprawdz;
     }
-    public static void wyciagnij_element(){
-
+    public static int wyciagnij_element(){
+        int sprawdz =0;
         Scanner skan = new Scanner(System.in);
         Scanner skan2 = new Scanner(System.in);
         System.out.println("Podaj półkę z której chcesz wyciągnąć przedmiot: ");
@@ -424,37 +355,37 @@ public class Lodowka {
             Class.forName("com.mysql.jdbc.Driver");
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
             if(kategoria==1) {
-                wyswietl_nabial();
+                wyswietl_baze("nabial");
                 System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
                 idd = skan.nextInt();
                 sql = "delete from nabial where id=?";
             }
             if(kategoria==2) {
-                wyswietl_mieso();
+                wyswietl_baze("mieso");
                 System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
                 idd = skan.nextInt();
                 sql = "delete from mieso where id=?";
             }
             if(kategoria==3) {
-                wyswietl_ryby();
+                wyswietl_baze("ryby");
                 System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
                 idd = skan.nextInt();
                 sql = "delete from ryby where id=?";
             }
             if(kategoria==4) {
-                wyswietl_warzywa();
+                wyswietl_baze("warzywa");
                 System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
                 idd = skan.nextInt();
                 sql = "delete from warzywa where id=?";
             }
             if(kategoria==5) {
-                wyswietl_ciasta();
+                wyswietl_baze("ciasta");
                 System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
                 idd = skan.nextInt();
                 sql = "delete from ciasta where id=?";
             }
             if(kategoria==6) {
-                wyswietl_napoje();
+                wyswietl_baze("napoje");
                 System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
                 idd = skan.nextInt();
                 sql = "delete from napoje where id=?";
@@ -463,18 +394,18 @@ public class Lodowka {
             myStmt.setInt(1,idd);
             myStmt.executeUpdate();
             System.out.println("Usunięto element o id " + idd);
-
+            sprawdz=1;
         }
         catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        return sprawdz;
 
     }
-    public static void edytuj(){
-
+    public static int edytuj(){
+        int sprawdz =0;
         System.out.println("W lodówce znajdują się: ");
 
 
@@ -503,7 +434,7 @@ public class Lodowka {
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
             String sql ="";
             if(kategoria==1) {
-                wyswietl_nabial();
+                wyswietl_baze("nabial");
                 System.out.println("Podaj id przedmiotu który chcesz edytować: ");
                 numer = skan2.nextInt();
                 System.out.println("Napisz jak chcesz edytować nazwę: ");
@@ -534,7 +465,7 @@ public class Lodowka {
                 myStmt.executeUpdate();
             }
             if(kategoria==2) {
-                wyswietl_mieso();
+                wyswietl_baze("mieso");
                 System.out.println("Podaj id przedmiotu który chcesz edytować: ");
                 numer = skan2.nextInt();
                 System.out.println("Napisz jak chcesz edytować nazwę: ");
@@ -565,7 +496,7 @@ public class Lodowka {
                 myStmt.executeUpdate();
             }
             if(kategoria==3) {
-                wyswietl_ryby();
+                wyswietl_baze("ryby");
                 System.out.println("Podaj id przedmiotu który chcesz edytować: ");
                 numer = skan2.nextInt();
                 System.out.println("Napisz jak chcesz edytować nazwę: ");
@@ -596,7 +527,7 @@ public class Lodowka {
                 myStmt.executeUpdate();
             }
             if(kategoria==4) {
-                wyswietl_warzywa();
+                wyswietl_baze("warzywa");
                 System.out.println("Podaj id przedmiotu który chcesz edytować: ");
                 numer = skan2.nextInt();
                 System.out.println("Napisz jak chcesz edytować nazwę: ");
@@ -627,7 +558,7 @@ public class Lodowka {
                 myStmt.executeUpdate();
             }
             if(kategoria==5) {
-                wyswietl_ciasta();
+                wyswietl_baze("ciasta");
                 System.out.println("Podaj id przedmiotu który chcesz edytować: ");
                 numer = skan2.nextInt();
                 System.out.println("Napisz jak chcesz edytować nazwę: ");
@@ -658,7 +589,7 @@ public class Lodowka {
                 myStmt.executeUpdate();
             }
             if(kategoria==6) {
-                wyswietl_napoje();
+                wyswietl_baze("napoje");
                 System.out.println("Podaj id przedmiotu który chcesz edytować: ");
                 numer = skan2.nextInt();
                 System.out.println("Napisz jak chcesz edytować nazwę: ");
@@ -692,13 +623,14 @@ public class Lodowka {
 
 
             System.out.println("Pomyślnie edytowano element o id = " + numer);
-
+            sprawdz=1;
         }
         catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return sprawdz;
     }
 
 

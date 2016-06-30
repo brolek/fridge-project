@@ -59,10 +59,10 @@ public class Warzywa extends Przedmiot{
     }
 
 
-    public void dodaj_date(){
-        Scanner skan = new Scanner(System.in);
-        System.out.println("Podaj date upłynięcia terminu ważności produktu ('rrrr-mm-dd'): ");
-        String data = skan.nextLine();
+    public void dodaj_date(String data){
+        //Scanner skan = new Scanner(System.in);
+       // System.out.println("Podaj date upłynięcia terminu ważności produktu ('rrrr-mm-dd'): ");
+        //String data = skan.nextLine();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         try {
             data_waznosci = sdf1.parse(data);

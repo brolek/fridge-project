@@ -5,11 +5,11 @@ import java.util.Date;
 /**
  * Created by Bartek on 2016-06-22.
  */
-public abstract class Przedmiot <T>{
+public abstract class Przedmiot{
 
     public abstract void wyswietl();
 
-    public abstract void dodaj_date();
+    public abstract void dodaj_date(String data);
     public abstract void setNazwa(String nazwa);
     public abstract void setWaga(double wagaa);
     public abstract void setUnique();

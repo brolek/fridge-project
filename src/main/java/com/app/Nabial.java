@@ -14,10 +14,10 @@ public class Nabial extends Przedmiot {
     private double waga;
     private double procent_tluszczu;
 
-    public void Nabial(String nazwaa,Date data,double wagaa,double tluszcz)
+    public void Nabial(String nazwaa,double wagaa,double tluszcz)
     {
         nazwa=nazwaa;
-        data_waznosci = data;
+       // data_waznosci = data;
         waga = wagaa;
         procent_tluszczu = tluszcz;
     }
@@ -37,6 +37,8 @@ public class Nabial extends Przedmiot {
         double procent = skan.nextDouble();
         procent_tluszczu =procent;
     }
+
+
     public double getUnique(){
         return procent_tluszczu;
     }
@@ -58,10 +60,10 @@ public class Nabial extends Przedmiot {
     }
 
 
-    public void dodaj_date(){
-        Scanner skan = new Scanner(System.in);
-        System.out.println("Podaj date upłynięcia terminu ważności produktu ('rrrr-mm-dd'): ");
-        String data = skan.nextLine();
+    public void dodaj_date(String data){
+        //Scanner skan = new Scanner(System.in);
+        //System.out.println("Podaj date upłynięcia terminu ważności produktu ('rrrr-mm-dd'): ");
+        //String data = skan.nextLine();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         try {
             data_waznosci = sdf1.parse(data);
