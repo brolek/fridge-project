@@ -1,17 +1,18 @@
 package com.app;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 
 import static java.lang.System.exit;
 
 
-/**
- * Created by Bartek on 2016-06-11.
- */
+
 public class Lodowka {
 
 
@@ -38,6 +39,88 @@ public class Lodowka {
         //
         return obiekt.getNazwa();
 
+    }
+    public static Przedmiot zapisz_do_obiektu(int id,String wybor){
+        int numer =0;
+        if (wybor == "nabial")
+        {
+            numer = 1;
+        }
+        if (wybor == "mieso")
+        {
+            numer =2;
+        }
+        if (wybor =="ryby")
+        {
+            numer =3;
+        }
+        if (wybor =="warzywa")
+        {
+            numer =4;
+        }
+        if (wybor=="ciasta")
+        {
+            numer =5;
+        }
+        if (wybor=="napoje")
+        {
+            numer =6;
+        }
+        PrzedmiotFabryka nowy = new PrzedmiotFabryka();
+        Przedmiot obiekt = null;
+        obiekt = nowy.stworzPrzedmiot(numer);
+
+
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
+            String sql = "select * from "+wybor+" where id=?";
+            PreparedStatement myStmt = myConn.prepareStatement(sql);
+            myStmt.setInt(1, id);
+            ResultSet Rs = myStmt.executeQuery();
+            while (Rs.next()) {
+                obiekt.setNazwa(Rs.getString("nazwa"));
+                obiekt.setRodzaj(Rs.getString("rodzaj"));
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                String text = df.format(Rs.getDate("data_waznosci"));
+                obiekt.dodaj_date(text);
+                obiekt.setWaga(Rs.getDouble("waga"));
+                if (wybor == "nabial")
+                {
+                    obiekt.setUnique(Rs.getDouble("procent"));
+                }
+                if (wybor == "mieso")
+                {
+                    obiekt.setUnique2(Rs.getString("kraj"));
+                }
+                if (wybor =="ryby")
+                {
+                    obiekt.setUnique2(Rs.getString("zbiornik"));
+                }
+                if (wybor =="warzywa")
+                {
+                    obiekt.setUnique2(Rs.getString("kraj"));
+                }
+                if (wybor=="ciasta")
+                {
+                    obiekt.setUnique2(Rs.getString("firma"));
+                }
+                if (wybor=="napoje")
+                {
+                    obiekt.setUnique(Rs.getDouble("procent"));
+                }
+
+            }
+
+            //System.out.println(Rs.getString("nazwa") + ",\t" + Rs.getString("rodzaj") + ",\t" + Rs.getDate("data_waznosci") + ",\t\t" + Rs.getDouble("waga") + "\t\t" + Rs.getDouble("procent"));
+        }
+            catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        return obiekt;
     }
 
     public static void dokladne_dane(){
@@ -169,7 +252,43 @@ public class Lodowka {
         System.out.println("Podaj wagę przedmiotu (w kilogramach): ");
         double waga = skan.nextDouble();
         obiekt.setWaga(waga);
-        obiekt.setUnique();
+        if (obiekt.getRodzaj() == "nabial")
+        {
+            System.out.println("Podaj procent zawartości tłuszczu: ");
+            double procent = skan2.nextDouble();
+            obiekt.setUnique(procent);
+        }
+        if (obiekt.getRodzaj() == "mieso")
+        {
+            System.out.println("Podaj kraj pochodzenia: ");
+            String kraj = skan2.nextLine();
+            obiekt.setUnique2(kraj);
+        }
+        if (obiekt.getRodzaj() =="ryby")
+        {
+            System.out.println("Podaj zbiornik z którego pochodzi ta ryba: ");
+            String zbiornik = skan2.nextLine();
+            obiekt.setUnique2(zbiornik);
+        }
+        if (obiekt.getRodzaj() =="warzywa")
+        {
+            System.out.println("Podaj kraj pochodzenia: ");
+            String kraj = skan2.nextLine();
+            obiekt.setUnique2(kraj);
+        }
+        if (obiekt.getRodzaj()=="ciasta")
+        {
+            System.out.println("Podaj nazwę cukierni: ");
+            String cukiernia = skan2.nextLine();
+            obiekt.setUnique2(cukiernia);
+        }
+        if (obiekt.getRodzaj()=="napoje")
+        {
+            System.out.println("Podaj zawartośc procentową alkoholu: ");
+            double procent = skan2.nextDouble();
+            obiekt.setUnique(procent);
+        }
+
         return obiekt;
 
 
@@ -349,14 +468,23 @@ public class Lodowka {
         return sprawdz;
     }
 
-    public static Przedmiot usun(int id)
+    public static Przedmiot usun(int id,String wybor,int kategoria,Originator o,Caretaker c)
     {
-        Przedmiot obiekt = new Nabial();
+        PrzedmiotFabryka nowy = new PrzedmiotFabryka();
+        Przedmiot obiekt = null;
+        obiekt = nowy.stworzPrzedmiot(kategoria);
         String sql="";
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lodowka?useSSL=false", "root", "root");
-            sql = "delete from nabial where id=?";
+            obiekt = zapisz_do_obiektu(id,wybor);
+            o.setNazwa(obiekt.getNazwa());
+            o.setRodzaj(obiekt.getRodzaj());
+            o.setData(obiekt.getData_waznosci());
+            o.setWaga(obiekt.getWaga());
+            c.dodajMemento(o.zapisz());
+            sql = "delete from "+wybor+" where id=?";
             PreparedStatement myStmt = myConn.prepareStatement(sql);
 
             myStmt.setInt(1,id);
@@ -372,8 +500,10 @@ public class Lodowka {
         return obiekt;
 
     }
-    public static void wyciagnij_element(){
 
+    public static void wyciagnij_element(){
+        Caretaker caretaker = new Caretaker();
+        Originator originator = new Originator();
         Scanner skan = new Scanner(System.in);
         Scanner skan2 = new Scanner(System.in);
         System.out.println("Podaj półkę z której chcesz wyciągnąć przedmiot: ");
@@ -383,8 +513,32 @@ public class Lodowka {
         System.out.println("4. Warzywa");
         System.out.println("5. Ciasta");
         System.out.println("6. Napoje");
-
+        String wybor = "";
         int kategoria = skan2.nextInt();
+        if (kategoria == 1)
+        {
+            wybor = "nabial";
+        }
+        if (kategoria == 2)
+        {
+            wybor = "mieso";
+        }
+        if (kategoria == 3)
+        {
+            wybor = "ryby";
+        }
+        if (kategoria == 4)
+        {
+            wybor = "warzywa";
+        }
+        if (kategoria == 5)
+        {
+            wybor = "ciasta";
+        }
+        if (kategoria == 6)
+        {
+            wybor = "napoje";
+        }
 
         PrzedmiotFabryka nowy = new PrzedmiotFabryka();
         Przedmiot obiekt = null;
@@ -392,8 +546,10 @@ public class Lodowka {
         wyswietl_baze(obiekt);
         System.out.println("Podaj id elementu który chcesz wyciągnąć: ");
         int idd = skan.nextInt();
+        //Scanner skann = new Scanner(System.in) ;
+        usun(idd,wybor,kategoria,originator,caretaker);
+        System.out.println("Usunąłeś " + originator.odczytaj(caretaker.odczytaj(0)));
 
-        usun(idd);
 
     }
     public static int dodaj(int a,int b)

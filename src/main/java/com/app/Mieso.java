@@ -15,11 +15,12 @@ public class Mieso extends Przedmiot{
     private double waga;
     private String kraj;
 
-    public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
+    public void Mięso(String nazwaa,Date data,double wagaa,String kraj)
     {
         nazwa=nazwaa;
         data_waznosci = data;
         waga = wagaa;
+        this.kraj=kraj;
 
     }
     public void setNazwa(String nazwaa)
@@ -31,13 +32,14 @@ public class Mieso extends Przedmiot{
     {
         waga = wagaa;
     }
-    public void setUnique()
+    public void setUnique2(String krajj)
     {
-        Scanner skan = new Scanner(System.in);
-        System.out.println("Podaj kraj pochodzenia: ");
-        String krajj = skan.nextLine();
+        //Scanner skan = new Scanner(System.in);
+        //System.out.println("Podaj kraj pochodzenia: ");
+        //String krajj = skan.nextLine();
         kraj=krajj;
     }
+    public void setUnique(double x){};
     public String getUnique2(){
         return kraj;
     }

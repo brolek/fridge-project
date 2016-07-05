@@ -15,11 +15,12 @@ public class Ciasta extends Przedmiot {
     private double waga;
     private String firma;
 
-    public void Mięso(String nazwaa,Date data,double wagaa,double tluszcz)
+    public void Ciasta(String nazwaa,Date data,double wagaa,String firma)
     {
         nazwa=nazwaa;
         data_waznosci = data;
         waga = wagaa;
+        this.firma=firma;
 
     }
     public void setNazwa(String nazwaa)
@@ -31,13 +32,14 @@ public class Ciasta extends Przedmiot {
     {
         waga = wagaa;
     }
-    public void setUnique()
+    public void setUnique2(String firmaa)
     {
-        Scanner skan = new Scanner(System.in);
-        System.out.println("Podaj nazwę firmy z której pochodzi ciasto: ");
-        String firmaa = skan.nextLine();
+        //Scanner skan = new Scanner(System.in);
+        //System.out.println("Podaj nazwę firmy z której pochodzi ciasto: ");
+        //String firmaa = skan.nextLine();
         firma = firmaa;
     }
+    public void setUnique(double x){};
     public String getUnique2(){
         return firma;
     }

@@ -30,11 +30,12 @@ public class Nabial extends Przedmiot {
     {
         waga = wagaa;
     }
-    public void setUnique()
+    public void setUnique2(String x){};
+    public void setUnique(double procent)
     {
-        Scanner skan = new Scanner(System.in);
-        System.out.println("Podaj zawartosc procentową tłuszczu: ");
-        double procent = skan.nextDouble();
+       // Scanner skan = new Scanner(System.in);
+        //System.out.println("Podaj zawartosc procentową tłuszczu: ");
+        //double procent = skan.nextDouble();
         procent_tluszczu =procent;
     }
 

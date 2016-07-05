@@ -12,12 +12,12 @@ public class LodowkaTest {
 
     @Before
     public void setUp(){
-
+    Przedmiot obiekt = null;
     }
 
     @After
     public void tearDown(){
-
+        Przedmiot obiekt = null;
     }
 
     @Test
@@ -50,7 +50,12 @@ public class LodowkaTest {
     }
     @Test
     public void usun(){
-        Przedmiot sprawdz = Lodowka.usun(1);
+        int i=1;
+        String a="nabial";
+        int k =1;
+        Originator o = new Originator();
+        Caretaker c = new Caretaker();
+        Przedmiot sprawdz = Lodowka.usun(i,a,k,o,c);
         Assert.assertEquals(null,sprawdz);
     }
     @Test
