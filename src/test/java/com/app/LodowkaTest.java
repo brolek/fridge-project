@@ -20,7 +20,7 @@ public class LodowkaTest {
         Przedmiot obiekt = null;
     }
 
-    @Test
+   /* @Test
     public void do_bazy(){
         Przedmiot obiekt = new Nabial();
 
@@ -32,6 +32,7 @@ public class LodowkaTest {
         int sprawdz = Lodowka.do_bazy(obiekt);
         Assert.assertEquals(1,sprawdz);
     }
+    */
 
     @Test
     public void sprawdz_zawartosc(){
