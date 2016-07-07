@@ -2,9 +2,6 @@ package com.app;
 
 import java.util.Date;
 
-/**
- * Created by Bartek on 2016-07-05.
- */
 public class Memento {
     private String nazwa;
     private String rodzaj;

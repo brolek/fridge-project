@@ -6,21 +6,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 
- // Created by Bartek on 2016-06-14.
-
 public class LodowkaTest {
 
     @Before
     public void setUp(){
-    Przedmiot obiekt = null;
+
     }
 
     @After
     public void tearDown(){
-        Przedmiot obiekt = null;
+
     }
 
-   /* @Test
+    @Test
     public void do_bazy(){
         Przedmiot obiekt = new Nabial();
 
@@ -28,16 +26,15 @@ public class LodowkaTest {
         obiekt.dodaj_date("2016-09-08");
 
         obiekt.setWaga(1.5);
-        //obiekt.setUnique();
-        int sprawdz = Lodowka.do_bazy(obiekt);
+        int sprawdz = LodowkaController.do_bazy(obiekt);
         Assert.assertEquals(1,sprawdz);
     }
-    */
+
 
     @Test
     public void sprawdz_zawartosc(){
 
-        int sprawdz = Lodowka.sprawdz_zawartosc();
+        int sprawdz = LodowkaController.sprawdz_zawartosc();
         Assert.assertEquals(1,sprawdz);
     }
 
@@ -46,7 +43,7 @@ public class LodowkaTest {
         Przedmiot obiekt =new Nabial();
 
 
-        String sprawdz = Lodowka.wyswietl_baze(obiekt);
+        String sprawdz = LodowkaController.wyswietl_baze(obiekt);
         Assert.assertNotEquals(null,sprawdz);
     }
     @Test
@@ -56,14 +53,14 @@ public class LodowkaTest {
         int k =1;
         Originator o = new Originator();
         Caretaker c = new Caretaker();
-        Przedmiot sprawdz = Lodowka.usun(i,a,k,o,c);
+        Przedmiot sprawdz = LodowkaController.usun(i,a,k,o,c);
         Assert.assertEquals(null,sprawdz);
     }
     @Test
     public void dodaj(){
         int a =5;
         int b=2;
-        int sprawdz = Lodowka.dodaj(a,b);
+        int sprawdz = LodowkaController.dodaj(a,b);
         Assert.assertEquals(a+b,sprawdz);
     }
 

@@ -2,12 +2,8 @@ package com.app;
 
 import java.util.Date;
 
-/**
- * Created by Bartek on 2016-06-22.
- */
 public abstract class Przedmiot{
     public String rodzaj;
-    public abstract void wyswietl();
 
     public abstract void dodaj_date(String data);
     public abstract void setNazwa(String nazwa);

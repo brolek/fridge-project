@@ -3,11 +3,7 @@ package com.app;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
-/**
- * Created by Bartek on 2016-06-26.
- */
 public class Warzywa extends Przedmiot{
     private String nazwa;
     private final String rodzaj = "warzywa";
@@ -34,9 +30,6 @@ public class Warzywa extends Przedmiot{
     }
     public void setUnique2(String kraj)
     {
-        //Scanner skan = new Scanner(System.in);
-       // System.out.println("Podaj kraj z którego pochodzi " + nazwa +": ");
-       // String kraj = skan.nextLine();
         kraj_pochodzenia = kraj;
     }
     public void setUnique(double x){};
@@ -44,9 +37,7 @@ public class Warzywa extends Przedmiot{
         return kraj_pochodzenia;
     }
     public double getUnique(){return 0;}
-    public void wyswietl(){
 
-    }
     public String getNazwa(){
         return nazwa;
     }
@@ -62,9 +53,6 @@ public class Warzywa extends Przedmiot{
 
 
     public void dodaj_date(String data){
-        //Scanner skan = new Scanner(System.in);
-       // System.out.println("Podaj date upłynięcia terminu ważności produktu ('rrrr-mm-dd'): ");
-        //String data = skan.nextLine();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         try {
             data_waznosci = sdf1.parse(data);

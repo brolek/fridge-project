@@ -1,8 +1,5 @@
 package com.app;
 
-/**
- * Created by Bartek on 2016-07-06.
- */
 public class Light {
     private static Light instance = null;
     private static boolean sswitch;

@@ -6,12 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-
-import static java.lang.System.exit;
-
-
-
-public class Lodowka {
+public class LodowkaController {
 
     public static void czekaj(){
         try {
@@ -147,7 +142,6 @@ public class Lodowka {
             } else {
 
                 int numer = new Integer(wyborr).intValue();
-                //int numer = skan2.nextInt();
                 int id = 0;
                 String sql = "";
 
@@ -337,7 +331,6 @@ public class Lodowka {
                 System.out.println("Wprowadzona wartość nie jest poprawna, wpisz jeszcze raz: ");
             }
         }
-        //double waga = skan.nextDouble();
         obiekt.setWaga(waga);
 
         if (obiekt.getRodzaj() == "nabial")
@@ -606,7 +599,6 @@ public class Lodowka {
 
             myStmt.setInt(1,id);
             myStmt.executeUpdate();
-            //System.out.println("Usunięto element o id " + id);
             obiekt = null;
         }
         catch (SQLException e) {
@@ -642,7 +634,6 @@ public class Lodowka {
                 int kategoria = new Integer(wyborr).intValue();
 
                 String wybor = "";
-                //int kategoria = skan2.nextInt();
                 if (kategoria == 1) {
                     wybor = "nabial";
                 }
@@ -680,7 +671,7 @@ public class Lodowka {
                         System.out.println("Podano złą wartość. Spróbuj jeszcze raz.");
                     }
                 }
-                //Scanner skann = new Scanner(System.in) ;
+
                 usun(idd, wybor, kategoria, originator, caretaker);
                 System.out.println("Usunąłeś " + originator.odczytaj(caretaker.odczytaj(0)));
                 break;
@@ -696,7 +687,7 @@ public class Lodowka {
 
     public static int edytuj(){
         int sprawdz =0;
-        //System.out.println("W lodówce znajdują się: ");
+
 
         while(true) {
 
@@ -717,7 +708,7 @@ public class Lodowka {
             } else {
 
                 int kategoria = new Integer(wyborr).intValue();
-                //int kategoria = skan.nextInt();
+
 
 
                 Scanner skan2 = new Scanner(System.in);
@@ -726,7 +717,7 @@ public class Lodowka {
                 Scanner skan5 = new Scanner(System.in);
                 Scanner skan6 = new Scanner(System.in);
 
-                //System.out.println("Podaj id przedmiotu który chcesz edytować: ");
+
                 int numer = 0;
 
                 PrzedmiotFabryka nowy = new PrzedmiotFabryka();
@@ -751,7 +742,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować nazwę: ");
                         String nazwa = skan3.nextLine();
-                        //System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
+
                         String data = "";
                         while (true) {
                             System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
@@ -819,7 +810,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować nazwę: ");
                         String nazwa = skan3.nextLine();
-                        //System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
+
                         String data = "";
                         while (true) {
                             System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
@@ -876,7 +867,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować nazwę: ");
                         String nazwa = skan3.nextLine();
-                        //System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
+
                         String data = "";
                         while (true) {
                             System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
@@ -933,7 +924,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować nazwę: ");
                         String nazwa = skan3.nextLine();
-                        //System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
+
                         String data = "";
                         while (true) {
                             System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
@@ -990,7 +981,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować nazwę: ");
                         String nazwa = skan3.nextLine();
-                        //System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
+
                         String data = "";
                         while (true) {
                             System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
@@ -1047,7 +1038,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować nazwę: ");
                         String nazwa = skan3.nextLine();
-                        //System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
+
                         String data = "";
                         while (true) {
                             System.out.println("Napisz jak chcesz edytować date(yyyy-MM-dd) ? ");
@@ -1081,8 +1072,7 @@ public class Lodowka {
                         }
                         System.out.println("Napisz jak chcesz edytować procent zawartości alkoholu ? ");
                         double alkohol =0;
-                       // System.out.println("Napisz jak chcesz edytować procent zawartości tłuszczu ? ");
-                        //double tluszcz = 0;
+
 
                         while (true) {
                             try {
@@ -1120,63 +1110,6 @@ public class Lodowka {
 
         }
     }
-
-
-
-    public static void menu(){
-        while(true) {
-            Scanner skan = new Scanner(System.in);
-            Light swiatlo = Light.getInstance();
-            if(swiatlo.getSwitch()== true)
-            {
-                System.out.println("Swiatło zostało zaświecone");
-            }
-            while(true) {
-                System.out.println("---Witaj w lodówce. Co chcesz zrobić?---");
-                System.out.println("1. Włóż przedmioty do lodówki - wybierz 1");
-                System.out.println("2. Wyciągnij przedmioty z lodówki - wybierz 2");
-                System.out.println("3. Sprawdź co znajduje się w lodówce - wybierz 3.");
-                System.out.println("4. Wyświetl dokładne dane podanego przedmiotu - wybierz 4.");
-                System.out.println("5. Edytuj określony przedmiot - wybierz 5");
-                System.out.println("6. Wyjście - wybierz 6");
-
-                String wyborr = skan.nextLine();
-                if ((!wyborr.equals("1") && !wyborr.equals("2") && !wyborr.equals("3") && !wyborr.equals("4") && !wyborr.equals("5") && !wyborr.equals("6"))) {
-                    System.out.println("Podano zły numer");
-                    czekaj();
-
-                }
-                else {
-
-            int wybor = new Integer(wyborr).intValue();
-            switch (wybor) {
-                case 1:
-                    dodaj_element();
-                    break;
-                case 2:
-                    wyciagnij_element();
-                    break;
-                case 3:
-                    sprawdz_zawartosc();
-                    break;
-                case 4:
-                    dokladne_dane();
-                    break;
-                case 5:
-                    edytuj();
-                    break;
-                case 6:
-                    System.out.println("---Trwa zamykanie drzwi lodówki---");
-                    czekaj();
-                    exit(0);
-            }
-            }
-            }
-        }
-
-    }
-
-
 
 
 

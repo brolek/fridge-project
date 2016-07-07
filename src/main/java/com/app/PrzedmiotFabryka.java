@@ -1,8 +1,5 @@
 package com.app;
 
-/**
- * Created by Bartek on 2016-07-05.
- */
 public class PrzedmiotFabryka {
 
     public Przedmiot stworzPrzedmiot(int numer)

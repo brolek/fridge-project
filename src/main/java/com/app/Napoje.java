@@ -3,11 +3,9 @@ package com.app;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
-/**
- * Created by Bartek on 2016-06-26.
- */
+
+
 public class Napoje extends Przedmiot {
     private String nazwa;
     private final String rodzaj = "napoje";
@@ -34,9 +32,6 @@ public class Napoje extends Przedmiot {
     }
     public void setUnique(double procent)
     {
-        //Scanner skan = new Scanner(System.in);
-        //System.out.println("Podaj zawartosc procentową alkoholu (jeśli nie zawiera alkoholu to wpisz 0): ");
-        //double procent = skan.nextDouble();
         zawartosc_alkoholu =procent;
     }
     public void setUnique2(String x){};
@@ -45,11 +40,6 @@ public class Napoje extends Przedmiot {
     }
     public String getUnique2(){return "";}
 
-
-
-    public void wyswietl(){
-
-    }
     public String getNazwa(){
         return nazwa;
     }
@@ -65,9 +55,6 @@ public class Napoje extends Przedmiot {
 
 
     public void dodaj_date(String data){
-        //Scanner skan = new Scanner(System.in);
-        //System.out.println("Podaj date upłynięcia terminu ważności produktu ('rrrr-mm-dd'): ");
-        //String data = skan.nextLine();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         try {
             data_waznosci = sdf1.parse(data);
